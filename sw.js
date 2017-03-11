@@ -1,3 +1,5 @@
+var cacheName = 'CFC';
+
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function () {
     navigator.serviceWorker.register('sw.js').then(function (registration) {
@@ -28,7 +30,7 @@ self.addEventListener('activate', function (e) {
 
 self.addEventListener('fetch', function (e) {
   e.respondWith(
-    caches.open('CFC').then(function (cache) {
+    caches.open(cacheName).then(function (cache) {
       return cache.match(e.request).then(function (response) {
         var fetchPromise = fetch(e.request).then(function (networkResponse) {
           cache.put(e.request, networkResponse.clone());
