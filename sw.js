@@ -1,15 +1,5 @@
 var cacheName = 'CFC';
 
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', function () {
-    navigator.serviceWorker.register('sw.js').then(function (registration) {
-      console.info('[ServiceWorker] Registration successful', registration);
-    }).catch(function (err) {
-      console.error('[ServiceWorker] Registration failed', err);
-    });
-  });
-}
-
 self.addEventListener('install', function (e) {
   console.info('[ServiceWorker] Install');
 });

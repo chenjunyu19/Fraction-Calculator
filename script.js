@@ -1,7 +1,12 @@
-var f1n = document.getElementById('f1n');
-var f1d = document.getElementById('f1d');
-var f2n = document.getElementById('f2n');
-var f2d = document.getElementById('f2d');
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').then(function (registration) {
+      console.info('ServiceWorker registration successful', registration);
+    }).catch(function (err) {
+      console.error('ServiceWorker registration failed', err);
+    });
+  });
+}
 
 /**
  * 发送一个通知
@@ -21,6 +26,10 @@ function sendNotification(message) {
  * @param {Number} algorithm 运算法则：1 为加，2 为减，3 为乘，4 为除
  */
 function calc(algorithm) {
+  var f1n = document.getElementById('f1n');
+  var f1d = document.getElementById('f1d');
+  var f2n = document.getElementById('f2n');
+  var f2d = document.getElementById('f2d');
   var result;
   switch (algorithm) {
     case 1:
